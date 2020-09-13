@@ -1,0 +1,18 @@
+# General
+node_modules
+npm-debug.log
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# System
+.DS_Store
+
+# Environment secrets
+.env
