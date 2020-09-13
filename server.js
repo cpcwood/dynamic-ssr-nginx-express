@@ -7,6 +7,11 @@ const environment = process.env.NODE_ENV || 'development';
 
 const app = express();
 
+app.get('/', async (req, res) => {
+  const html = await ssr(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+  return res.status(200).send(html);
+})
+
 const server = app.listen(port, address, () => {
   debug(`Starting dynamic SSR server in ${environment} mode`);
   debug(`Server is listening on port ${port}`);
