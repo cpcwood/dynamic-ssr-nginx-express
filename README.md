@@ -26,6 +26,10 @@ Puppeteer
 
 ## Install & Configure
 
+
+## Dev notes
+- crawler filter only to apply for html requests, static asset requests should go direct to file or application server
+
 ## Resources
 
 https://developers.google.com/web/tools/puppeteer/articles/ssr

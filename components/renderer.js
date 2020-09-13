@@ -13,6 +13,17 @@ async function ssr(url) {
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+
+  await page.setRequestInterception(true);
+
+  page.on('request', req => {
+    const allowlist = ['document', 'script', 'xhr', 'fetch'];
+    if (!allowlist.includes(req.resourceType())) {
+      return req.abort();
+    }
+    req.continue();
+  });
+
   try {
     await page.goto(url, { waitUntil: 'networkidle0' });
   } catch (err) {
