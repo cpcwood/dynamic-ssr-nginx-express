@@ -1,11 +1,11 @@
 const debug = require('debug')('express:server');
 const express = require('express');
 
-const app = express();
-
 const port = process.env.PORT || 5001;
 const address = process.env.ADDRESS || '0.0.0.0';
 const environment = process.env.NODE_ENV || 'development';
+
+const app = express();
 
 const server = app.listen(port, address, () => {
   debug(`Starting dynamic SSR server in ${environment} mode`);

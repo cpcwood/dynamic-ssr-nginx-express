@@ -4,7 +4,7 @@
   "description": "Express webserver and Nginx filter to perform dynamic server side rendering for Single Page Applications.",
   "main": "server.js",
   "repository": "git@github.com:cpcwood/dynamic-ssr-express.git",
-  "author": "cpcwood <cpcwood@outlook.com>",
+  "author": "Chris Wood <cpcwood@outlook.com>",
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=production DEBUG=* node server.js",
