@@ -1,5 +1,6 @@
 const debug = require('debug')('express:server');
 const express = require('express');
+const renderer = require('./app/components/renderer');
 
 const port = process.env.PORT || 5001;
 const address = process.env.ADDRESS || '0.0.0.0';
@@ -8,9 +9,9 @@ const environment = process.env.NODE_ENV || 'development';
 const app = express();
 
 app.get('/', async (req, res) => {
-  const html = await ssr(`${req.protocol}://${req.get('host')}${req.originalUrl}`)
+  const html = await renderer(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
   return res.status(200).send(html);
-})
+});
 
 const server = app.listen(port, address, () => {
   debug(`Starting dynamic SSR server in ${environment} mode`);
