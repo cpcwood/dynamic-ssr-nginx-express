@@ -6,7 +6,12 @@
   "repository": "git@github.com:cpcwood/dynamic-ssr-express.git",
   "author": "cpcwood <cpcwood@outlook.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production DEBUG=* node server.js",
+    "start_dev": "NODE_ENV=development DEBUG=* node server.js"
+  },
   "dependencies": {
+    "debug": "^4.1.1",
     "express": "^4.17.1"
   }
 }
