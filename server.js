@@ -21,7 +21,7 @@ const server = app.listen(port, address, () => {
   debug(`Starting dynamic SSR server in ${environment} mode`);
   debug(`Server is listening on port ${port}`);
   debug(`Server is listening on address ${address}`);
-  debug(`Rendering pages for ${config.apiHostLocation} API server`);
+  debug(`Rendering pages for the ${config.apiHost} server`);
 });
 
 server.on('connection', (socket) => {
