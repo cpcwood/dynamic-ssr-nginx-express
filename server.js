@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const debug = require('debug')('express:server');
 const express = require('express');
+const puppeteer = require('puppeteer');
 const config = require('./config/server.config');
 const renderer = require('./components/renderer');
 
@@ -9,11 +10,20 @@ const port = process.env.PORT || 5001;
 const address = process.env.ADDRESS || '0.0.0.0';
 const environment = process.env.NODE_ENV || 'development';
 
+let browserWSEndpoint = null;
 const app = express();
 
-app.get('/', async (req, res) => {
+// ignore requests for static assets
+app.use(/\/.*\.\w+$/, (req, res) => res.status(404).send());
+
+app.get('*', async (req, res) => {
+  if (!browserWSEndpoint) {
+    const browser = await puppeteer.launch();
+    browserWSEndpoint = await browser.wsEndpoint();
+  }
+
   const requestPath = config.resolveApiHost(req);
-  const html = await renderer(requestPath);
+  const html = await renderer(requestPath, browserWSEndpoint);
   return res.status(200).send(html);
 });
 
