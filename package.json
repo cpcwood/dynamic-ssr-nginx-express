@@ -2,8 +2,11 @@
   "name": "dynamic-ssr-express",
   "version": "1.0.0",
   "description": "Express webserver and Nginx filter to perform dynamic server side rendering for Single Page Applications.",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "git@github.com:cpcwood/dynamic-ssr-express.git",
   "author": "cpcwood <cpcwood@outlook.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
