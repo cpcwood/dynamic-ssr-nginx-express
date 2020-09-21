@@ -1,0 +1,14 @@
+[Unit]
+Description=Dynamic SSR Renderer - NodeJS Express 
+After=network.target
+
+[Service]
+Type=simple
+User=<unprivilidged-user>
+Environment=NODE_ENV=production
+WorkingDirectory=<path-to-server-directory>
+ExecStart=/usr/bin/node <path-to-server-directory>/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
