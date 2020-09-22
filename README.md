@@ -41,6 +41,15 @@ Puppeteer
 	sudo systemctl status dynamic-ssr.service
 ```
 
+Add the following type conditional to the SPA, to check whether the page has been prerendered and only hydrate the application if so:
+```js
+if (!!document.getElementById('pre-rendered')) {
+  ReactDOM.hydrate(reactApp, document.getElementById('root'))
+} else {
+  ReactDOM.render(reactApp, document.getElementById('root'))
+}
+```
+
 
 ## Dev notes
 - crawler filter only to apply for html requests, static asset requests should go direct to file or application server
