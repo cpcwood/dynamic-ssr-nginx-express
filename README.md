@@ -69,6 +69,7 @@ Some notes which I found useful during setup:
 - Currently the renderer blocks outgoing requests to Google Analytics services via the block list on line 26 ```components/renderer.js```. Edit the blocklist array to match your application requirements.
 - By default the SSR server listens on localhost:5001, this can be changed in the ```.env``` file but make sure to also change the Nginx ```proxy_pass``` directive to match
 - System NodeJS can be a different version to user, which may cause errors with [Puppeteer](https://developers.google.com/web/tools/puppeteer), check the version the root user has access to and make sure it is up to date
+- Since the SSR server will be making AJAX requests in headless chrome, make sure to enable CORS on the application server else requests may be rejected
 
 
 ## Future Developments
