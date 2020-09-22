@@ -16,7 +16,7 @@ In this implementation, client requests are filtered for crawlers, using the Use
 - render the SPA using puppeteer headless chrome and return the resulting html snapshot
 - return a previously cached render
 
-Filtering crawlers in the reverse proxy provides separation of concerns for SSR and the option to run the renderer server on a different machine. There will also be no client application changes and client bundles can still be served using a CDN. 
+Filtering crawlers in the reverse proxy provides separation of concerns for SSR and the option to run the renderer server on a different machine. There will also be very little client application changes and client bundles can still be served using a CDN.
 
 ## Tech Stack
 
