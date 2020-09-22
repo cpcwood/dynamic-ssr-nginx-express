@@ -43,21 +43,21 @@ Clone or download repository and move to root directory
 - save service file to ```/etc/systemd/system/dynamic-ssr.service```
 - enable and start service:  
 ```sh
-	sudo systemctl daemon-reload
-	sudo systemctl enable dynamic-ssr.service
-	sudo systemctl start dynamic-ssr.service
+sudo systemctl daemon-reload
+sudo systemctl enable dynamic-ssr.service
+sudo systemctl start dynamic-ssr.service
 ```
 - check the status of the service:
 ```sh
-	sudo systemctl status dynamic-ssr.service
+sudo systemctl status dynamic-ssr.service
 ```
 
 #### Setup Nginx:
 - Integrate configuration from ```example-nginx.conf``` to existing Nginx reverse proxy site configuration (default: ```/etc/nginx/sites-available/default```) in order to redirect requests from bots to the SSR server
 - Reload systemd and restart Nginx:
 ```sh
-	sudo systemctl daemon-reload
-	sudo systemctl restart nginx
+sudo systemctl daemon-reload
+sudo systemctl restart nginx
 ```
 
 ## Extra notes
