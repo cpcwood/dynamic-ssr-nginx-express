@@ -26,6 +26,21 @@ Puppeteer
 
 ## Install & Configure
 
+- clone repo
+- ensure nodejs installed
+- ensure yarn installed
+- install dependencies ```yarn install```
+- add environment variables to .env
+- integrate ngnix configuration ```example-nginx.conf``` to existing reverse proxy in order to redirect requests from bots to ssr service
+- ensure permissions on build directory allow for nginx access
+- create systemd service from example, save service file to ```/etc/systemd/system/dynamic-ssr.service```
+- enable service: ```sh
+  sudo systemctl daemon-reload
+	sudo systemctl enable dynamic-ssr.service
+	sudo systemctl start dynamic-ssr.service
+	sudo systemctl status dynamic-ssr.service
+```
+
 
 ## Dev notes
 - crawler filter only to apply for html requests, static asset requests should go direct to file or application server
