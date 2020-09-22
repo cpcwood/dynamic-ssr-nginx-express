@@ -1,4 +1,4 @@
-# Dynamic SSR Express
+# Dynamic SSR Nginx Express
 
 [![Code Style](https://badgen.net/badge/code%20style/airbnb/ff5a5f)](https://github.com/airbnb/javascript)
 

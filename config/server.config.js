@@ -9,5 +9,5 @@ module.exports = {
     return apiHost + requestUrl;
   },
   apiHost,
-  cacheTimeout: process.env.CACHE_TIMEOUT
+  cacheTimeout: process.env.CACHE_TIMEOUT,
 };

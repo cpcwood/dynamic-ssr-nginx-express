@@ -6,8 +6,8 @@ const config = require('../config/server.config');
 const RENDER_CACHE = new Map();
 
 async function ssr(url, browserWSEndpoint) {
-  const cachedPage = RENDER_CACHE.get(url)
-  if (!!cachedPage && Date.now() < (cachedPage[1] + 1000*60*config.cacheTimeout)) {
+  const cachedPage = RENDER_CACHE.get(url);
+  if (!!cachedPage && Date.now() < (cachedPage[1] + 1000 * 60 * config.cacheTimeout)) {
     return RENDER_CACHE.get(url)[0];
   }
 
@@ -38,11 +38,11 @@ async function ssr(url, browserWSEndpoint) {
   }
 
   await page.evaluate(() => {
-    document.body.innerHTML += '<div id="pre-rendered"></div>'
-  })
+    document.body.innerHTML += '<div id="pre-rendered"></div>';
+  });
 
   const html = await page.content();
-  const htmlRemovedScripts = (function(a){return a.replace(/<script[^>]*>.*?<\/script>/gi,'')})(html)
+  const htmlRemovedScripts = ((a) => { a.replace(/<script[^>]*>.*?<\/script>/gi, ''); })(html);
   await page.close();
 
   const ttRenderMs = Date.now() - start;
