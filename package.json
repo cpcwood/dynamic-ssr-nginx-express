@@ -1,11 +1,14 @@
 {
-  "name": "dynamic-ssr-express",
+  "name": "dynamic-ssr-nginx-express",
   "version": "1.0.0",
   "description": "Express webserver and Nginx filter to perform dynamic server side rendering for Single Page Applications.",
   "main": "server.js",
   "repository": "git@github.com:cpcwood/dynamic-ssr-express.git",
-  "author": "Chris Wood <cpcwood@outlook.com>",
+  "author": "Chris Wood <contact@cpcwood.com>",
   "license": "MIT",
+  "engines": { 
+    "node" : ">=12.0.0"
+  },
   "scripts": {
     "start": "NODE_ENV=production DEBUG=* node server.js",
     "start_dev": "NODE_ENV=development DEBUG=* node server.js",
