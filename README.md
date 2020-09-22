@@ -4,7 +4,7 @@
 
 ## Overview
 
-Express webserver and Nginx filter to perform dynamic server side rendering (SSR) for Single Page Applications (SPAs), with the aim of improving SEO and SMO with minimal configuration to the current application.  
+Express.js webserver and Nginx filter to perform dynamic server side rendering (SSR) for Single Page Applications (SPAs), with the aim of improving SEO and SMO with minimal configuration to the current application.  
 
 ## Why & How
 
