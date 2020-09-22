@@ -63,7 +63,7 @@ Clone or download repository and move to root directory
 ## Extra notes
 
 Some notes which I found useful during setup:
-- Ensure permissions on application build directory and files allow for Nginx access, so static files can be served without hitting the application server
+- Ensure permissions on application build directory and files allow for Nginx access, so static files can be served using the ```try_files``` directive, without hitting the application server
 - Nginx debugging mode is useful for checking where requests are routed to and if static files are served directly. Enable by adding ```error_log <path-to-log-file> debug;``` in the nginx site configuration
 - Express uses the ```DEBUG``` environment variable to define level of server logging. To debug the SSR server, add ```Environment=DEBUG=*``` to the systemd service configuration and reload and restart the service. Unless defined systemd will output logs to ```/var/log/syslog```
 - Currently the renderer blocks outgoing requests to Google Analytics services via the block list on line 26 ```components/renderer.js```. Edit the blocklist array to match your application requirements.
