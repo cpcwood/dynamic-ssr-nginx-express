@@ -36,6 +36,10 @@ async function ssr(url, browserWSEndpoint) {
     debug(new Error('page.goto timed out'));
   }
 
+  await page.evaluate(() => {
+    document.body.innerHTML += '<div id="pre-rendered"></div>'
+  })
+
   const html = await page.content();
   await page.close();
 
