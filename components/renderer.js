@@ -1,13 +1,14 @@
 const debug = require('debug')('express:component:renderer');
 const puppeteer = require('puppeteer');
+const config = require('../config/server.config');
 
 // temporary memory cache
 const RENDER_CACHE = new Map();
 
 async function ssr(url, browserWSEndpoint) {
   const cachedPage = RENDER_CACHE.get(url)
-  if (!!cachedPage && Date.now() < (cachedPage[1] + 1000*60*15)) {
-    return RENDER_CACHE.get(url);
+  if (!!cachedPage && Date.now() < (cachedPage[1] + 1000*60*config.cacheTimeout)) {
+    return RENDER_CACHE.get(url)[0];
   }
 
   const start = Date.now();

@@ -27,7 +27,7 @@ Puppeteer
 ## Install & Configure
 
 - clone repo
-- ensure nodejs installed
+- ensure nodejs installed v12.18.4
 - ensure yarn installed
 - install dependencies ```yarn install```
 - add environment variables to .env
