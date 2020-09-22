@@ -5,7 +5,8 @@ const puppeteer = require('puppeteer');
 const RENDER_CACHE = new Map();
 
 async function ssr(url, browserWSEndpoint) {
-  if (RENDER_CACHE.has(url)) {
+  const cachedPage = RENDER_CACHE.get(url)
+  if (!!cachedPage && Date.now() < (cachedPage[1] + 1000*60*15)) {
     return RENDER_CACHE.get(url);
   }
 
@@ -21,7 +22,7 @@ async function ssr(url, browserWSEndpoint) {
     if (!allowlist.includes(req.resourceType())) {
       return req.abort();
     }
-    const blocklist = ['www.google-analytics.com', '/gtag/js', 'ga.js', 'analytics.js', 'google.com/recaptcha', 'gstatic.com'];
+    const blocklist = ['google-analytics.com', '/gtag/js', 'ga.js', 'analytics.js', 'google.com/recaptcha', 'gstatic.com'];
     if (blocklist.find((regex) => req.url().match(regex))) {
       return req.abort();
     }
@@ -35,19 +36,15 @@ async function ssr(url, browserWSEndpoint) {
     debug(new Error('page.goto timed out'));
   }
 
-  await page.evaluate(() => {
-    document.body.innerHTML += '<div id="pre-rendered"></div>'
-  })
   const html = await page.content();
-  const htmlRemovedScripts = (function(a){return a.replace(/<script[^>]*>.*?<\/script>/gi,'')})(html)
   await page.close();
 
   const ttRenderMs = Date.now() - start;
   debug(`Headless rendered page in: ${ttRenderMs}ms`);
 
-  RENDER_CACHE.set(url, htmlRemovedScripts);
+  RENDER_CACHE.set(url, [html, Date.now()]);
 
-  return htmlRemovedScripts;
+  return html;
 }
 
 module.exports = ssr;
