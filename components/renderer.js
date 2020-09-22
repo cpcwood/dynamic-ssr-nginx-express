@@ -41,14 +41,15 @@ async function ssr(url, browserWSEndpoint) {
   })
 
   const html = await page.content();
+  const htmlRemovedScripts = (function(a){return a.replace(/<script[^>]*>.*?<\/script>/gi,'')})(html)
   await page.close();
 
   const ttRenderMs = Date.now() - start;
   debug(`Headless rendered page in: ${ttRenderMs}ms`);
 
-  RENDER_CACHE.set(url, [html, Date.now()]);
+  RENDER_CACHE.set(url, [htmlRemovedScripts, Date.now()]);
 
-  return html;
+  return htmlRemovedScripts;
 }
 
 module.exports = ssr;
