@@ -30,15 +30,15 @@ Developed on Ubuntu 18.04.5
 
 Clone or download repository and move to root directory
 
-Install dependencies:
+#### Install dependencies:
 - Ensure [NodeJS](https://nodejs.org/en/) is installed and updated to current lts version (v12.18.4 at time of writing)
 - Ensure [Yarn](https://yarnpkg.com/) installed, [npm](https://www.npmjs.com/get-npm) can also be used with equivalent commands
 - Install application dependencies ```yarn install```
 
-Configure application environment:
+#### Configure application environment:
 - Copy environment variables template and fill with application server details ```cp .env.template .env```
 
-Create service to run the SSR server with minimal downtime:
+#### Create service to run the SSR server with minimal downtime:
 - create systemd service or similar from the example ```example-systemd.service```
 - save service file to ```/etc/systemd/system/dynamic-ssr.service```
 - enable and start service:  
@@ -52,7 +52,7 @@ Create service to run the SSR server with minimal downtime:
 	sudo systemctl status dynamic-ssr.service
 ```
 
-Setup Nginx:
+#### Setup Nginx:
 - Integrate configuration from ```example-nginx.conf``` to existing Nginx reverse proxy site configuration (default: ```/etc/nginx/sites-available/default```) in order to redirect requests from bots to the SSR server
 - Reload systemd and restart Nginx:
 ```sh
