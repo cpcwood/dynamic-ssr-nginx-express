@@ -16,3 +16,6 @@ pids
 
 # Environment secrets
 .env
+
+nginx.conf
+systemd.service
