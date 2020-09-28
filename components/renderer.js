@@ -1,6 +1,9 @@
-const debug = require('debug')('express:component:renderer');
+const debug = require('debug');
 const puppeteer = require('puppeteer');
 const config = require('../config/server.config');
+
+const debugError = debug('express:error:component:renderer');
+const debugNotice = debug('express:notice:component:renderer');
 
 // temporary memory cache
 const RENDER_CACHE = new Map();
@@ -33,8 +36,8 @@ async function ssr(url, browserWSEndpoint) {
   try {
     await page.goto(url, { waitUntil: 'networkidle0' });
   } catch (err) {
-    debug(err);
-    debug(new Error('page.goto timed out'));
+    debugError(err);
+    debugError(new Error('page.goto timed out'));
   }
 
   await page.evaluate(() => {
@@ -42,11 +45,11 @@ async function ssr(url, browserWSEndpoint) {
   });
 
   const html = await page.content();
-  const htmlRemovedScripts = ((a) => { a.replace(/<script[^>]*>.*?<\/script>/gi, ''); })(html);
+  const htmlRemovedScripts = ((a) => a.replace(/<script[^>]*>.*?<\/script>/gi, ''))(html);
   await page.close();
 
   const ttRenderMs = Date.now() - start;
-  debug(`Headless rendered page in: ${ttRenderMs}ms`);
+  debugNotice(`Headless rendered page in: ${ttRenderMs}ms`);
 
   RENDER_CACHE.set(url, [htmlRemovedScripts, Date.now()]);
 
